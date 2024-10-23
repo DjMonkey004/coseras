@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Photo Gallery</title>
+    <style>
+        .gallery img {
+            width: 100px;
+            margin: 5px;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+        .gallery img:hover,
+        .gallery img:focus {
+            border-color: blue;
+        }
+    </style>
+</head>
+<body onload="initGallery()">
+    <h1>Interactive Photo Gallery</h1>
+    <div class="gallery">
+        <img src="image1.jpg" alt="Description of image 1" tabindex="0">
+        <img src="image2.jpg" alt="Description of image 2" tabindex="0">
+        <img src="image3.jpg" alt="Description of image 3" tabindex="0">
+        <img src="image4.jpg" alt="Description of image 4" tabindex="0">
+        <img src="image5.jpg" alt="Description of image 5" tabindex="0">
+        <img src="image6.jpg" alt="Description of image 6" tabindex="0">
+    </div>
+
+    <script>
+        function initGallery() {
+            const images = document.querySelectorAll('.gallery img');
+            images.forEach((img, index) => {
+                img.addEventListener('mouseover', () => {
+                    console.log(`Mouse over image ${index + 1}`);
+                });
+                img.addEventListener('mouseleave', () => {
+                    console.log(`Mouse left image ${index + 1}`);
+                });
+                img.addEventListener('focus', () => {
+                    console.log(`Focused on image ${index + 1}`);
+                });
+                img.addEventListener('blur', () => {
+                    console.log(`Blurred from image ${index + 1}`);
+                });
+            });
+            addTabindex();
+        }
+
+        function addTabindex() {
+            const images = document.querySelectorAll('.gallery img');
+            images.forEach((img, index) => {
+                img.setAttribute('tabindex', '0');
+                console.log(`Tabindex added to image ${index + 1}`);
+            });
+        }
+    </script>
+</body>
+</html>
